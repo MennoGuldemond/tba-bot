@@ -1,0 +1,7 @@
+Let the user start a private chat with the bot
+
+Save user game state
+
+Create default embed message
+
+Add achievements

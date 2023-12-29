@@ -1,0 +1,25 @@
+{
+  "name": "tba-bot",
+  "version": "0.0.1",
+  "description": "A text-based adventure Discord bot",
+  "main": "tba.js",
+  "scripts": {
+    "start": "node src/tba.js",
+    "dev": "nodemon src/tba.js",
+    "prisma-push": "npx prisma db push"
+  },
+  "author": "Menno Guldemond",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.7.0",
+    "@discordjs/rest": "^2.2.0",
+    "@prisma/client": "^5.7.1",
+    "discord-api-types": "^0.37.67",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prisma": "^5.7.1"
+  }
+}
