@@ -1,6 +1,11 @@
-Let the user start a private chat with the bot
+Respond to messages in private chat
 
-Save user game state
+Model the database
+- game scenes
+- items
+- game state
+
+Save user to db
 
 Create default embed message
 
