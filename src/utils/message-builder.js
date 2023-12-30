@@ -7,10 +7,9 @@ function create(scene, oldOptionNumber = -1) {
   const fields = []
   const texts = scene.text.split('**')
   for (let i = 0; i < texts.length; i++) {
-    texts[i].length
     fields.push({
       name: '\u200b',
-      value: texts[i],
+      value: texts[i], // Max field value is 1024
     })
   }
 
