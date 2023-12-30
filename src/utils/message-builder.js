@@ -1,16 +1,20 @@
 const { AttachmentBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js')
 
-function create(text, sceneId, options, oldOptionNumber = -1) {
-  const file = new AttachmentBuilder(`./assets/${sceneId}.jpg`)
+function create(scene, oldOptionNumber = -1) {
+  const file = new AttachmentBuilder(`./assets/${scene.id}.jpg`)
   const date = new Date()
-  const embed = new EmbedBuilder().setDescription(text).setImage(`attachment://${sceneId}.jpg`).setTimestamp(date)
+  const embed = new EmbedBuilder()
+    .setTitle(scene.title)
+    .setDescription(scene.text)
+    .setImage(`attachment://${scene.id}.jpg`)
+    .setTimestamp(date)
   const buttons = []
 
-  for (let i = 0; i < options.length; i++) {
+  for (let i = 0; i < scene.options.length; i++) {
     buttons.push(
       new ButtonBuilder()
-        .setCustomId(`${sceneId}.${options[i].id}.${i}.${date.getTime()}`)
-        .setLabel(options[i].text)
+        .setCustomId(`${scene.id}.${scene.options[i].id}.${i}.${date.getTime()}`)
+        .setLabel(scene.options[i].text)
         .setStyle(oldOptionNumber == i ? ButtonStyle.Success : ButtonStyle.Secondary)
         .setDisabled(oldOptionNumber >= 0)
     )
@@ -20,6 +24,7 @@ function create(text, sceneId, options, oldOptionNumber = -1) {
   return {
     embeds: [embed],
     components: [actionRow],
+    ephemeral: true,
     files: [file],
   }
 }

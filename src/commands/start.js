@@ -6,14 +6,13 @@ const messageBuilder = require('../utils/message-builder')
 module.exports = {
   data: new SlashCommandBuilder().setName('start').setDescription('Start a new game'),
   async execute(interaction) {
-    await interaction.reply(`I'll send you a private message to get started.`)
     const discordUser = await interaction.client.users.fetch(interaction.user.id, false)
     const user = await userService.findOrCreate({
       id: discordUser.id,
       name: discordUser.globalName,
     })
     const scene = await sceneService.getById(user.sceneId)
-    const message = messageBuilder.create(scene.text, scene.id, scene.options)
-    await discordUser.send(message)
+    const message = messageBuilder.create(scene)
+    await interaction.reply(message)
   },
 }

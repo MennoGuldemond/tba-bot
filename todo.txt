@@ -3,3 +3,5 @@ Model the database
 - user stats / game state
 
 Add achievements
+
+add continue / restart / saving option

@@ -11,10 +11,10 @@ async function handle(interaction) {
 
   try {
     const oldScene = await sceneService.getById(oldSceneId)
-    const updatedMessage = messageBuilder.create(oldScene.text, oldScene.id, oldScene.options, oldOptionNumber)
+    const updatedMessage = messageBuilder.create(oldScene, oldOptionNumber)
 
     const nextScene = await sceneService.getById(nextSceneId)
-    const newMessage = messageBuilder.create(nextScene.text, nextScene.id, nextScene.options)
+    const newMessage = messageBuilder.create(nextScene)
 
     await interaction.update(updatedMessage)
     await interaction.followUp(newMessage)
