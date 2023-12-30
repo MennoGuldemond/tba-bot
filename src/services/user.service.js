@@ -12,4 +12,3 @@ module.exports = {
   getById,
   create,
 }
-JSON.parse(scene.options)
