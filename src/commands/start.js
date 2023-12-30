@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 const userService = require('../services/user.service')
 const sceneService = require('../services/scene.service')
+const messageBuilder = require('../utils/message-builder')
 
 module.exports = {
   data: new SlashCommandBuilder().setName('start').setDescription('Start a new game'),
@@ -12,7 +13,10 @@ module.exports = {
       name: user.globalName,
     })
     const firstScene = await sceneService.getById(1)
-    const message = await user.send(firstScene.text)
+    const message = messageBuilder.create(firstScene.text, firstScene.imageName, firstScene.options)
+    // interaction.reply(message)
+    await user.send(message)
+    // const message = await user.send(firstScene.text)
     // message.react(one)
   },
 }
