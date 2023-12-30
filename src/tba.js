@@ -1,6 +1,7 @@
 require('dotenv').config()
 const fs = require('node:fs')
 const { Client, Collection, GatewayIntentBits } = require('discord.js')
+const interactionHandler = require('./interaction-handler')
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
@@ -19,6 +20,12 @@ client.once('ready', () => {
 })
 
 client.on('interactionCreate', async (interaction) => {
+  // Respond to button presses of users on our story embeds
+  if (interaction.isButton()) {
+    return await interactionHandler.handle(interaction)
+  }
+
+  // If it was not a button press, only respond to commands
   if (!interaction.isCommand()) return
 
   const command = client.commands.get(interaction.commandName)

@@ -38,8 +38,28 @@ async function findOrCreate(user) {
   return await create(user)
 }
 
+async function update(user) {
+  try {
+    const saved = await prisma.client.user.update({
+      data: {
+        ...user,
+      },
+      where: {
+        id: user.id,
+      },
+    })
+    await prisma.client.$disconnect()
+    return saved
+  } catch (err) {
+    console.log(err)
+    logService.error(JSON.stringify(err))
+    return await prisma.client.$disconnect()
+  }
+}
+
 module.exports = {
   getById,
   create,
   findOrCreate,
+  update,
 }

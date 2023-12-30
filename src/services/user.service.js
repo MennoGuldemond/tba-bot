@@ -12,8 +12,13 @@ async function findOrCreate(user) {
   return await userRepository.findOrCreate(user)
 }
 
+async function update(user) {
+  return await userRepository.update(user)
+}
+
 module.exports = {
   getById,
   create,
   findOrCreate,
+  update,
 }

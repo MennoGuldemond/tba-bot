@@ -1,7 +1,5 @@
 Model the database
 - items
-- game state
-
-Create default embed message
+- user stats / game state
 
 Add achievements
