@@ -1,11 +1,6 @@
-Respond to messages in private chat
-
 Model the database
-- game scenes
 - items
 - game state
-
-Save user to db
 
 Create default embed message
 

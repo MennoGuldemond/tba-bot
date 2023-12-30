@@ -7,12 +7,12 @@ module.exports = {
   async execute(interaction) {
     await interaction.reply(`I'll send you a private message to get started.`)
     const user = await interaction.client.users.fetch(interaction.user.id, false)
-    userService.create({
+    userService.findOrCreate({
       id: user.id,
       name: user.globalName,
     })
     const firstScene = await sceneService.getById(1)
-    // user.send(firstScene.text);
+    user.send(firstScene.text)
     // interaction.client.users.fetch(interaction.user.id, false).then(async (user) => {
 
     // });
