@@ -12,9 +12,7 @@ module.exports = {
       name: user.globalName,
     })
     const firstScene = await sceneService.getById(1)
-    user.send(firstScene.text)
-    // interaction.client.users.fetch(interaction.user.id, false).then(async (user) => {
-
-    // });
+    const message = await user.send(firstScene.text)
+    // message.react(one)
   },
 }
