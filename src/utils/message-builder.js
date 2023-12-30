@@ -3,19 +3,29 @@ const { AttachmentBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBu
 function create(scene, oldOptionNumber = -1) {
   const file = new AttachmentBuilder(`./assets/${scene.id}.jpg`)
   const date = new Date()
+  const buttons = []
+  const fields = []
+  const texts = scene.text.split('**')
+  for (let i = 0; i < texts.length; i++) {
+    texts[i].length
+    fields.push({
+      name: '\u200b',
+      value: texts[i],
+    })
+  }
+
   const embed = new EmbedBuilder()
     .setTitle(scene.title)
-    .setDescription(scene.text)
     .setImage(`attachment://${scene.id}.jpg`)
     .setTimestamp(date)
-  const buttons = []
+    .setFields(fields)
 
   for (let i = 0; i < scene.options.length; i++) {
     buttons.push(
       new ButtonBuilder()
         .setCustomId(`${scene.id}.${scene.options[i].id}.${i}.${date.getTime()}`)
         .setLabel(scene.options[i].text)
-        .setStyle(oldOptionNumber == i ? ButtonStyle.Success : ButtonStyle.Secondary)
+        .setStyle(oldOptionNumber == i ? ButtonStyle.Primary : ButtonStyle.Secondary)
         .setDisabled(oldOptionNumber >= 0)
     )
   }
