@@ -14,14 +14,6 @@ async function getById(id) {
     });
 }
 
-// async function findOrCreate(userProfile) {
-//   const found = await getByEmail(userProfile.email);
-//   if (found) {
-//     return found;
-//   }
-//   return await create(userProfile);
-// }
-
 async function create(user) {
   try {
     const newUser = prisma.client.user.create({
